@@ -9,7 +9,7 @@ var SalesTaxesCreation = function (amount,item,price,type,tax,total) {
     this.total = this.total();
   }
 
-  //adding the new peoperty priceWithTax to SalesTaxesCreation
+  //adding the new property priceWithTax to SalesTaxesCreation
   SalesTaxesCreation.prototype.priceWithTax = function (price) {
 
    var finalTax = 0;
@@ -40,36 +40,38 @@ var SalesTaxesCreation = function (amount,item,price,type,tax,total) {
     
   }
 
-  
-  SalesTaxesCreation.prototype.salesTax = function (item,price) {
+  //adding the new property salesTax to SalesTaxesCreation
+  SalesTaxesCreation.prototype.salesTax = function (item, price) {
     
    var tax = 0;
    var finalTax = 0;
    var priceWithTax = this.priceWithTax
-  
+  //Looping through the array and finding the total tax for each input
   for (var i = 0; i < this.price.length; i++) {
     tax += priceWithTax[i] - this.price[i]
   }
-  
+   //Rounding the total tax to 2 decimal places
    return (Math.round(tax*20)/20).toFixed(2);
 
   }
   
   
-  
+  //adding the new property salesTax to SalesTaxesCreation
   SalesTaxesCreation.prototype.total = function (item,price,tax) {
     var total = 0;
     var priceWithTax = this.priceWithTax
+    //Looping through the array and calculating the final Total of the input with tax
     for (var i = 0; i < this.price.length; i++) {
       total += this.priceWithTax[i]
     }
-
+    //Rounding the total tax to 2 decimal places
     return (Math.round(total*20)/20).toFixed(2);
 
   }
   
   
-  
+  //Receipt ONE--Structuring the way the receipt will print for each
+  //Listing what item is in each input as well as the amount, OG price and if it is domestic or imported
   function receiptOne(amount,items,price,type) {
     var receiptOne = new SalesTaxesCreation(amount,items,price,type)
     console.log(receiptOne)
@@ -84,7 +86,7 @@ var SalesTaxesCreation = function (amount,item,price,type,tax,total) {
    receiptOne([1,1,1],['book','music cd','chocolate bar'],[12.49,14.99,0.85],['domestic','domestic','domestic'])
  
 
-
+   //Receipt TWO
    function receiptTwo(amount,items,price,type) {
     var receiptTwo = new SalesTaxesCreation(amount,items,price,type)
     console.log(receiptTwo)
@@ -99,7 +101,7 @@ var SalesTaxesCreation = function (amount,item,price,type,tax,total) {
    receiptTwo([1,1],['chocolates','perfume'],[10.00,47.50],['imported', 'imported'])
 
 
-
+  //Receipt THREE
   function receiptThree(amount,items,price,type) {
    var receiptThree = new SalesTaxesCreation(amount,items,price,type)
    console.log(receiptThree)
