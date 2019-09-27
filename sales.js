@@ -1,3 +1,4 @@
+//Setting the properties of SalesTaxesCreation
 var SalesTaxesCreation = function (amount,item,price,type,tax,total) {
     this.amount = amount;
     this.item = item;
@@ -8,23 +9,27 @@ var SalesTaxesCreation = function (amount,item,price,type,tax,total) {
     this.total = this.total();
   }
 
-  
+  //adding the new peoperty priceWithTax to SalesTaxesCreation
   SalesTaxesCreation.prototype.priceWithTax = function (price) {
-      
+
    var finalTax = 0;
    finalPrice = []
    
       for (var i = 0; i < this.item.length; i++) {
         var tax = 0
+      //Setting the item exemptions
       if (this.item[i] === 'book' || this.item[i] === 'chocolate bar' || this.item[i] === 'chocolates' || this.item[i] === 'headache pills') {tax = 0}
+      //If the item is not exempt it has a 10% tax applied to it
       else {tax +=  0.10}
+      //If it is an imported item it has a 5% tax applied 
       if (this.type[i] === 'imported') {
         tax += .05
       }
-
+      //Calculation to take the OG price added to the OG Price + tax fee which gives us the total prices
+      //Total Price being the OG Price including Tax
       finalPrice.push(this.price[i] + this.price[i] * tax)
       console.log("This is final price" + finalPrice)
-
+      //Rounding the total prices to 2 decimal places
       finalPrice = finalPrice.map(function(each_element) {
         return Number(each_element.toFixed(2));
       })
